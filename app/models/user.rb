@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   
   attr_reader :password 
   attr_accessor :password_confirmation
-  after_initialize { self.email.downcase! }
+  before_save { self.email.downcase! }
   # Can get rid of all password and password_confirmation related methods if
   # this easy method is used...
   # has_secure_password

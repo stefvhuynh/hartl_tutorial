@@ -1,2 +1,35 @@
 <% provide(:title, "Sign up") %>
 <h1>Sign up</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    
+    <%= render "shared/error_messages" %>
+    
+    <form action="<%= users_url %>" method="post">
+      <%= authenticity_token %>
+      
+      <label>Name:
+        <input type="text" name="user[name]" value="<%= @user.name %>">
+      </label>
+      <br>
+      
+      <label>Email:
+        <input type="text" name="user[email]" value="<%= @user.email %>">
+      </label>
+      <br>
+      
+      <label>Password:
+        <input type="password" name="user[password]" value="">
+      </label>
+      <br>
+      
+      <label>Confirmation:
+        <input type="password" name="user[password_confirmation]" value="">
+      </label>
+      <br>
+      
+      <button class="btn btn-large btn-primary">Create my account</button>
+    </form>
+  </div>
+</div>
