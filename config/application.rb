@@ -28,5 +28,6 @@ module HartlTutorial
     # config.i18n.default_locale = :de
 
     config.secret_key_base = '5d86e70356c5b6c8ccfee6a1e9cc40d0b0af7918ed73fbd3daf0800b82cc0057d9a1502446fbe3b594d22f3558bda4fa113e1c296510a7eaf79cdb6b87594d43'
+    config.assets.precompile += %w(*.png *.jpg *.jpeg *.gif)
   end
 end
