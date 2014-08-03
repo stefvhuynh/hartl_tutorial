@@ -1,0 +1,23 @@
+<% provide(:title, "Sign in") %>
+<h1>Sign in</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <form action="<%= session_url %>" method="post">
+      <%= authenticity_token %>
+      
+      <label>Email:
+        <input type="text" name="session[email]" value="">
+      </label>
+      
+      <label>Password:
+        <input type="password" name="session[password]" value="">
+      </label>
+      <br>
+      
+      <button class="btn btn-large btn-primary">Sign in</button>
+    </form>
+    
+    <p>New user? <a href="<%= signup_url %>">Sign up now!</a></p>
+  </div>
+</div>

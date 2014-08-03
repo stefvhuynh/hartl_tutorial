@@ -17,9 +17,18 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }
   validate :password_matches_confirmation
   
+  def self.new_remember_token
+    SecureRandom::urlsafe_base64(16)
+  end
+  
+  def self.digest(token)
+    Digest::SHA1.hexdigest(token.to_s)
+  end
+  
   attr_reader :password 
   attr_accessor :password_confirmation
   before_save { self.email.downcase! }
+  before_create :create_remember_token
   # Can get rid of all password and password_confirmation related methods if
   # this easy method is used...
   # has_secure_password
@@ -44,6 +53,10 @@ class User < ActiveRecord::Base
     unless self.password == self.password_confirmation
       errors[:password] << "confirmation does not match password"
     end
+  end
+  
+  def create_remember_token
+    self.remember_token = User.digest(User.new_remember_token)
   end
   
 end
