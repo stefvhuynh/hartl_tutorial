@@ -1,13 +1,13 @@
-<% provide(:title, "Sign up") %>
-<h1>Sign up</h1>
+<% provide(:title, "Edit user") %>
+<h1>Update your profile</h1>
 
 <div class="row">
   <div class="span6 offset3">
-    
     <%= render "shared/error_messages" %>
     
-    <form action="<%= users_url %>" method="post">
+    <form action="<%= user_url(@user) %>" method="post">
       <%= authenticity_token %>
+      <input type="hidden" name="_method" value="put">
       
       <label>Name:
         <input type="text" name="user[name]" value="<%= @user.name %>">
@@ -25,7 +25,10 @@
         <input type="password" name="user[password_confirmation]" value="">
       </label>
       
-      <button class="btn btn-large btn-primary">Create my account</button>
+      <button class="btn btn-large btn-primary">Save changes</button>
     </form>
+    
+    <%= gravatar_for @user %>
+    <a href="http://gravatar.com/emails">change</a>
   </div>
 </div>
